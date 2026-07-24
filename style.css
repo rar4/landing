@@ -239,13 +239,14 @@
       grid-template-columns: 3fr 2fr;
       gap: 52px;
       align-items: stretch;
-      margin-bottom:30px;
+
   }
 
   .hero-text {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      margin-bottom:30px;
   }
 
   .hero-photo {
