@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Имя Фамилия] — гипнотерапевт. Работа с тревогой, сном и привычками онлайн</title>
+<meta name="description" content="Дистанционная гипнотерапия: избавление от тревоги, бессонницы, панических атак и вредных привычек. Бесплатная консультация.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #17141f;
+    --bg-soft: #1e1a28;
+    --bg-soft2: #201929;
+    --accent: #6ea87e;
+    --accent-dim: rgba(110,168,126,0.16);
+    --violet: #8d7bd8;
+    --violet-dim: rgba(141,123,216,0.16);
+    --text: #ece6d8;
+    --text-dim: rgba(236,230,216,0.62);
+    --line: rgba(236,230,216,0.12);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth; font-size:18px;}
+
+  body{
+    background:
+      radial-gradient(700px 500px at 90% 0%, rgba(141,123,216,0.22) 0%, rgba(141,123,216,0) 60%),
+      radial-gradient(600px 450px at 0% 55%, rgba(110,168,126,0.10) 0%, rgba(110,168,126,0) 60%),
+      linear-gradient(180deg, #1a1524 0%, #17141f 40%, #150f1c 100%);
+    color:var(--text);
+    font-family:'Manrope', sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* Фон для десктопа: больше слоёв, мягкая фиксация при скролле */
+  @media (min-width: 900px){
+    body{
+      background:
+        radial-gradient(1100px 700px at 88% -8%, rgba(141,123,216,0.24) 0%, rgba(141,123,216,0) 58%),
+        radial-gradient(900px 620px at -8% 38%, rgba(110,168,126,0.13) 0%, rgba(110,168,126,0) 60%),
+        radial-gradient(700px 500px at 60% 105%, rgba(141,123,216,0.14) 0%, rgba(141,123,216,0) 55%),
+        radial-gradient(500px 400px at 15% -5%, rgba(236,230,216,0.05) 0%, rgba(236,230,216,0) 60%),
+        linear-gradient(180deg, #1b1526 0%, #17141f 45%, #130e1a 100%);
+      background-attachment:fixed, fixed, fixed, fixed, scroll;
+    }
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:var(--accent); text-decoration:none;}
+
+  .wrap{
+    max-width:840px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(19,20,28,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px;
+    max-width:840px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.15rem;
+    letter-spacing:0.02em;
+  }
+  .nav-cta{
+    border:1px solid var(--accent);
+    color:var(--accent);
+    padding:9px 18px;
+    border-radius:14px;
+    font-size:0.85rem;
+    font-weight:600;
+    letter-spacing:0.02em;
+    white-space:nowrap;
+    transition:background .25s, color .25s;
+  }
+  .nav-cta:hover{ background:var(--accent); color:var(--bg); }
+
+  /* ===== SECTION SCAFFOLD ===== */
+  section{
+    position:relative;
+    padding:96px 0 80px;
+    border-bottom:1px solid var(--line);
+  }
+  section:last-of-type{ border-bottom:none; }
+  section:nth-of-type(even){
+    background:linear-gradient(180deg, rgba(30,26,40,0.6), rgba(30,26,40,0.3));
+  }
+  section:nth-of-type(3n){
+    background:linear-gradient(180deg, rgba(32,25,41,0.55), rgba(32,25,41,0.25));
+  }
+  section::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:radial-gradient(rgba(141,123,216,0.06) 1px, transparent 1px);
+    background-size:26px 26px;
+    pointer-events:none;
+    opacity:0.5;
+  }
+  section > .wrap{ position:relative; z-index:1; }
+
+  .eyebrow{
+    display:flex; align-items:center; gap:12px;
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:18px;
+    font-weight:600;
+  }
+  .eyebrow::before{
+    content:"";
+    display:block;
+    width:28px; height:1px;
+    background:var(--accent);
+  }
+
+  .fade-up{
+    opacity:0; transform:translateY(18px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .fade-up.in{ opacity:1; transform:translateY(0); }
+
+  /* ===== HERO ===== */
+  .hero{
+    padding-top:120px;
+    padding-bottom:100px;
+    text-align:left;
+  }
+  .hero-glow{
+    position:absolute;
+    top:-100px; left:50%;
+    width:480px; height:480px;
+    transform:translateX(-50%);
+    background:radial-gradient(circle, var(--violet-dim) 0%, rgba(141,123,216,0) 70%);
+    pointer-events:none;
+    animation:breathe 9s ease-in-out infinite;
+  }
+  @media (min-width: 900px){
+    .hero-glow{
+      top:-160px; left:60%;
+      width:900px; height:900px;
+      background:
+        radial-gradient(circle at 40% 40%, var(--violet-dim) 0%, rgba(141,123,216,0) 55%),
+        radial-gradient(circle at 70% 60%, var(--accent-dim) 0%, rgba(110,168,126,0) 60%);
+    }
+  }
+  @keyframes breathe{
+    0%,100%{ opacity:0.55; transform:translateX(-50%) scale(1); }
+    50%{ opacity:1; transform:translateX(-50%) scale(1.08); }
+  }
+  .hero .wrap{
+    max-width:1240px;
+  }
+  .hero-top{
+    display:grid;
+    grid-template-columns:minmax(280px, 480px) 1fr;
+    gap:52px;
+    align-items:stretch;
+  }
+  .hero-text{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .hero-photo{
+    min-height:280px;
+    height:100%;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    font-size:0.85rem;
+    color:var(--text-dim);
+    padding:24px;
+    position:relative;
+  }
+  @media (min-width: 900px){
+    .hero-photo{
+      min-height:420px;
+    }
+  }
+  .hero-photo img{
+    width:100%; height:100%;
+    max-width:100%;
+    object-fit:contain;
+    position:relative;
+    z-index:1;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 5.4vw, 3.4rem);
+    line-height:1.14;
+    max-width:11.5ch;
+    position:relative;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--accent);
+  }
+  .hero p.lede{
+    margin-top:24px;
+    font-size:1.08rem;
+    color:var(--text-dim);
+    max-width:52ch;
+    position:relative;
+  }
+  .hero-actions{
+    margin-top:38px;
+    display:flex; gap:16px; flex-wrap:wrap;
+    position:relative;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:var(--bg);
+    font-weight:700;
+    padding:15px 28px;
+    border-radius:14px;
+    font-size:0.95rem;
+    border:1px solid var(--accent);
+    cursor:pointer;
+    transition:opacity .25s;
+  }
+  .btn-primary:hover{ opacity:0.88; }
+  .btn-ghost{
+    padding:15px 22px;
+    border:1px solid var(--line);
+    color:var(--text-dim);
+    border-radius:14px;
+    font-size:0.95rem;
+  }
+
+  /* ===== PAINS ===== */
+  .pain-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:36px;
+  }
+  .pain-item{
+    background:var(--bg);
+    padding:26px 24px;
+    font-size:0.98rem;
+    border-radius:14px;
+    border:1px solid var(--line);
+  }
+  .pain-item span{
+    display:block;
+    color:var(--accent);
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    margin-bottom:10px;
+  }
+
+  /* ===== PROGRAM ===== */
+  .steps{ margin-top:36px; }
+  .step{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:20px;
+    padding:22px 0;
+    border-top:1px solid var(--line);
+  }
+  .step:last-child{ border-bottom:1px solid var(--line); }
+  .step-num{
+    font-family:'Fraunces', serif;
+    color:var(--accent);
+    font-size:1.6rem;
+    font-weight:400;
+  }
+  .step h3{ font-size:1.08rem; margin-bottom:6px; font-weight:600; }
+  .step p{ color:var(--text-dim); font-size:0.95rem; max-width:56ch; }
+
+  /* ===== RESULTS ===== */
+  .result-grid{
+    margin-top:36px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px 32px;
+  }
+  .result-item{
+    display:flex; gap:14px; align-items:flex-start;
+    font-size:0.98rem;
+  }
+  .check{
+    flex:0 0 auto;
+    width:20px; height:20px;
+    border:1px solid var(--accent);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    margin-top:2px;
+    color:var(--accent);
+    font-size:0.7rem;
+  }
+
+  /* ===== VIDEO ===== */
+  .video-frame{
+    border-radius:16px;
+    overflow:hidden;
+    margin-top:32px;
+    aspect-ratio:16/9;
+    border:1px solid var(--line);
+    background:var(--bg-soft);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .video-frame a{
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+    color:var(--text);
+  }
+  .play{
+    width:64px; height:64px;
+    border-radius:50%;
+    border:1px solid var(--accent);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent);
+    font-size:1.3rem;
+    transition:background .25s, color .25s;
+  }
+  .video-frame a:hover .play{ background:var(--accent); color:var(--bg); }
+
+  /* ===== ABOUT ===== */
+  .about{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:40px;
+    margin-top:36px;
+    align-items:start;
+  }
+  .photo-slot{
+    border-radius:16px;
+    aspect-ratio:3/4;
+    border:1px dashed var(--line);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    font-size:0.82rem;
+    color:var(--text-dim);
+    padding:20px;
+  }
+  .about-text h3{ font-size:1.3rem; margin-bottom:12px; }
+  .about-text p{ color:var(--text-dim); margin-bottom:14px; font-size:0.98rem; }
+  .cred-tags{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-top:16px;
+  }
+  .cred-tags span{
+    font-size:0.78rem;
+    border:1px solid var(--line);
+    padding:6px 12px;
+    color:var(--text-dim);
+    letter-spacing:0.02em;
+  }
+
+  /* ===== CERTIFICATES ===== */
+  .cert-grid{
+    margin-top:36px;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+  }
+  .cert-slot{
+    border-radius:12px;
+    aspect-ratio:3/4;
+    border:1px dashed var(--line);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    font-size:0.78rem;
+    color:var(--text-dim);
+    padding:14px;
+  }
+
+  /* ===== GUARANTEES ===== */
+  .guarantee-list{ margin-top:32px; }
+  .guarantee{
+    padding:20px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+  .guarantee:last-child{ border-bottom:1px solid var(--line); }
+  .guarantee h3{ font-size:1.02rem; font-weight:600; }
+  .guarantee p{ color:var(--text-dim); font-size:0.94rem; }
+
+  /* ===== REVIEWS ===== */
+  .review-grid{
+    margin-top:36px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+  }
+  .review-card{
+    border-radius:14px;
+    border:1px solid var(--line);
+    padding:22px 18px;
+  }
+  .review-card .req{
+    font-size:0.78rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:10px;
+  }
+  .review-card a{
+    display:inline-block; margin-top:12px; font-size:0.86rem;
+  }
+  .shot-grid{
+    margin-top:18px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+  }
+  .shot-slot{
+    border-radius:12px;
+    aspect-ratio:4/3;
+    border:1px dashed var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.78rem; color:var(--text-dim);
+    text-align:center; padding:12px;
+  }
+
+  /* ===== CASES ===== */
+  .case{
+    border-radius:14px;
+    margin-top:28px;
+    padding:24px;
+    border:1px solid var(--line);
+  }
+  .case + .case{ margin-top:16px; }
+  .case-row{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:14px;
+    padding:8px 0;
+    font-size:0.94rem;
+  }
+  .case-row b{ color:var(--accent); font-weight:600; }
+  .case-row p{ color:var(--text-dim); }
+
+  /* ===== CTA / FORM ===== */
+  .wake{
+    text-align:center;
+    padding:110px 0 120px;
+    border-bottom:none;
+  }
+  .wake .eyebrow{ justify-content:center; }
+  .wake .eyebrow::before{ display:none; }
+  .wake h2{
+    font-size:clamp(1.9rem, 5vw, 2.7rem);
+    max-width:16ch;
+    margin:0 auto 18px;
+  }
+  .wake p{ color:var(--text-dim); max-width:48ch; margin:0 auto 40px; }
+
+  form{
+    max-width:440px;
+    margin:0 auto;
+    display:flex; flex-direction:column; gap:14px;
+    text-align:left;
+  }
+  form input, form select{
+    border-radius:10px;
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--text);
+    padding:14px 16px;
+    font-size:0.95rem;
+    font-family:'Manrope', sans-serif;
+    border-radius:14px;
+  }
+  form input::placeholder{ color:var(--text-dim); }
+  form input:focus, form select:focus{
+    outline:none; border-color:var(--accent);
+  }
+  form button{
+    margin-top:6px;
+  }
+  .form-note{
+    font-size:0.78rem;
+    color:var(--text-dim);
+    margin-top:14px;
+    text-align:center;
+  }
+  .thanks{
+    border-radius:14px;
+    display:none;
+    text-align:center;
+    padding:20px;
+    border:1px solid var(--accent);
+    color:var(--accent);
+    font-size:0.95rem;
+  }
+
+  footer{
+    padding:40px 0 60px;
+    text-align:center;
+  }
+  footer p{
+    font-size:0.78rem;
+    color:var(--text-dim);
+    max-width:60ch;
+    margin:0 auto 8px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  section:nth-of-type(even) .eyebrow{ color:var(--violet); }
+  section:nth-of-type(even) .eyebrow::before{ background:var(--violet); }
+
+  @media (max-width: 680px){
+    .hero-top{ grid-template-columns:1fr; }
+    .hero-photo{ min-height:280px; order:-1; }
+    .pain-list{ grid-template-columns:1fr; }
+    .result-grid{ grid-template-columns:1fr; }
+    .about{ grid-template-columns:1fr; }
+    .photo-slot{ max-width:220px; margin:0 auto; }
+    .cert-grid{ grid-template-columns:repeat(2,1fr); }
+    .review-grid{ grid-template-columns:1fr; }
+    .shot-grid{ grid-template-columns:repeat(2,1fr); }
+    .case-row{ grid-template-columns:1fr; }
+    .count{ font-size:2.6rem; top:36px; }
+    section{ padding:64px 0 56px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .hero-glow{ animation:none; }
+    .fade-up{ transition:none; opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">[Имя Фамилия]</div>
+    <a href="#wake" class="nav-cta">Записаться</a>
+  </div>
+</header>
+
+<!-- 10 — БОЛЬШОЕ ОБЕЩАНИЕ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="hero-text">
+        <div class="eyebrow">Дистанционная гипнотерапия</div>
+        <h1 class="fade-up">За <em>4–6 сеансов</em> онлайн вернуть себе спокойный сон, тихий ум и свободу от привычки, которая держит вас годами</h1>
+        <p class="lede fade-up">Работаю через глубокий транс без выезда из дома: раз в неделю, по видеосвязи, по методике, которая не требует от вас «верить в гипноз» — только 45–60 минут и готовность закрыть глаза.</p>
+        <div class="hero-actions fade-up">
+          <a href="#wake" class="btn-primary">Записаться на бесплатную консультацию</a>
+          <a href="#video" class="btn-ghost">Смотреть видео о методе →</a>
+        </div>
+      </div>
+      <div class="hero-photo fade-up">Ваше фото (замените на &lt;img src="..."&gt;)</div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 — БОЛИ АВАТАРА -->
+<section id="pains">
+  <div class="wrap">
+    <div class="eyebrow fade-up">Узнаёте себя?</div>
+    <h2 class="fade-up" style="font-size:clamp(1.75rem,4.2vw,2.35rem); max-width:20ch;">С этим чаще всего приходят на консультацию</h2>
+    <div class="pain-list fade-up">
+      <div class="pain-item"><span>01</span>Тревога держит в напряжении, даже когда объективных причин для неё нет</div>
+      <div class="pain-item"><span>02</span>Засыпаете глубоко за полночь и просыпаетесь уже разбитым</div>
+      <div class="pain-item"><span>03</span>Панические атаки приходят внезапно и в самый неподходящий момент</div>
+      <div class="pain-item"><span>04</span>Привычка (курение, переедание, прокрастинация), от которой не спасает сила воли</div>
+      <div class="pain-item"><span>05</span>Страх или фобия сужает жизнь — перелёты, публичные выступления, врачи</div>
+      <div class="pain-item"><span>06</span>Хроническая усталость, которую не снимает даже отпуск</div>
+      <div class="pain-item"><span>07</span>Внутренний критик не даёт покоя и подтачивает уверенность в себе</div>
+      <div class="pain-item"><span>08</span>Голова «не отключается» даже глубокой ночью</div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 — ПРОГРАММА -->
+<section id="program">
+  <div class="wrap">
+    <div class="eyebrow fade-up">Как устроена работа</div>
+    <h2 class="fade-up" style="font-size:clamp(1.75rem,4.2vw,2.35rem); max-width:22ch;">Короткая программа из трёх этапов — без затягивания на месяцы</h2>
+    <div class="steps fade-up">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <h3>Диагностическая консультация — 40 минут</h3>
+          <p>Разбираем запрос, историю проблемы и цель. Проверяем противопоказания и объясняем, что именно будет происходить на сеансах.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <h3>Погружение и работа с запросом — 3–4 сеанса</h3>
+          <p>Ввод в глубокий транс, работа с причиной симптома, замена автоматической реакции на новую. Каждый сеанс записывается для вас.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <h3>Закрепление и самостоятельные техники — 1 сеанс</h3>
+          <p>Проверяем устойчивость результата, даю аудио-инструкцию для самостоятельной практики и план на случай рецидива симптома.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 — РЕЗУЛЬТАТЫ -->
+<section id="results">
+  <div class="wrap">
+    <div class="eyebrow fade-up">Что меняется</div>
+    <h2 class="fade-up" style="font-size:clamp(1.75rem,4.2vw,2.35rem); max-width:20ch;">С чем вы уходите после курса</h2>
+    <div class="result-grid fade-up">
+      <div class="result-item"><span class="check">✓</span>Засыпаете за 10–15 минут и высыпаетесь без будильника-мучителя</div>
+      <div class="result-item"><span class="check">✓</span>Тревога отпускает, появляется ощущение опоры на себя</div>
+      <div class="result-item"><span class="check">✓</span>Расстаётесь с привычкой без ежедневной борьбы с собой</div>
+      <div class="result-item"><span class="check">✓</span>Проходите через пугающую ситуацию спокойно, без паники</div>
+      <div class="result-item"><span class="check">✓</span>Возвращается ясность мышления и дневная энергия</div>
+      <div class="result-item"><span class="check">✓</span>Внутренний диалог становится поддерживающим, а не критикующим</div>
+      <div class="result-item"><span class="check">✓</span>Появляется устойчивое чувство контроля над своим состоянием</div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 — ВИДЕО -->
+<section id="video">
+  <div class="wrap">
+    <div class="eyebrow fade-up">Прежде чем записаться</div>
+    <h2 class="fade-up" style="font-size:clamp(1.75rem,4.2vw,2.35rem); max-width:22ch;">5 минут о том, как проходит работа и кому она подойдёт</h2>
+    <div class="video-frame fade-up">
+      <!-- Замените href на ссылку вашего видео на YouTube -->
+      <a href="https://www.youtube.com/@ВАШ_КАНАЛ" target="_blank" rel="noopener">
+        <span class="play">▶</span>
+        <span>Смотреть на YouTube</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 5 — ОБО МНЕ -->
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow fade-up">Кто проводит сессии</div>
+    <div class="about fade-up">
+      <div class="photo-slot">
+        Ваша фотография хорошего качества (портрет, вертикальный формат 3:4)
+      </div>
+      <div class="about-text">
+        <h3>[Имя Фамилия]</h3>
+        <p>Работаю с тревожными состояниями, нарушениями сна, фобиями и привычками методом глубокого гипнотического транса. Провела(-ел) более [XXX] сессий, специализируюсь на дистанционном формате.</p>
+        <p>[Здесь — 3–5 предложений о вашем пути: образование, опыт, почему выбрали это направление, какой подход считаете своим.]</p>
+        <div class="cred-tags">
+          <span>Сертифицированный гипнотерапевт</span>
+          <span>[Название школы / курса]</span>
+          <span>[Год начала практики]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 — СЕРТИФИКАТЫ -->
+<section id="certificates">
+  <div class="wrap">
+    <div class="eyebrow fade-up">Подтверждение квалификации</div>
+    <h2 class="fade-up" style="font-size:clamp(1.75rem,4.2vw,2.35rem); max-width:22ch;">Сертификаты и дипломы</h2>
+    <div class="cert-grid fade-up">
+      <div class="cert-slot">Диплом / сертификат №1</div>
+      <div class="cert-slot">Диплом / сертификат №2</div>
+      <div class="cert-slot">Диплом / сертификат №3</div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 — ГАРАНТИИ -->
+<section id="guarantees">
+  <div class="wrap">
+    <div class="eyebrow fade-up">Что я гарантирую</div>
+    <h2 class="fade-up" style="font-size:clamp(1.75rem,4.2vw,2.35rem); max-width:20ch;">Прежде чем вы решитесь</h2>
+    <div class="guarantee-list fade-up">
+      <div class="guarantee">
+        <h3>Конфиденциальность</h3>
+        <p>Всё, что происходит на сессиях, остаётся между нами. Запись сеанса передаётся только вам.</p>
+      </div>
+      <div class="guarantee">
+        <h3>Честная диагностика</h3>
+        <p>Если на первой консультации вижу, что гипнотерапия вам не подходит или нужен врач — скажу прямо и не возьму вас в работу.</p>
+      </div>
+      <div class="guarantee">
+        <h3>Прозрачный прогресс</h3>
+        <p>После каждого сеанса — короткая обратная связь: что изменилось и что делать дальше.</p>
+      </div>
+      <div class="guarantee">
+        <h3>[Ваша дополнительная гарантия]</h3>
+        <p>[Например: перенос сессии без вопросов, доп. сессия при отсутствии динамики и т.д. — впишите то, что готовы предложить реально.]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 — ОТЗЫВЫ -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="eyebrow fade-up">Отзывы клиентов</div>
+    <h2 class="fade-up" style="font-size:clamp(1.75rem,4.2vw,2.35rem); max-width:20ch;">Что говорят те, кто уже прошёл курс</h2>
+    <div class="review-grid fade-up">
+      <div class="review-card">
+        <div class="req">Запрос: бессонница</div>
+        <p>Видео-отзыв о работе с нарушением сна.</p>
+        <a href="https://www.youtube.com/@ВАШ_КАНАЛ" target="_blank" rel="noopener">Смотреть на YouTube →</a>
+      </div>
+      <div class="review-card">
+        <div class="req">Запрос: панические атаки</div>
+        <p>Видео-отзыв о работе с паническими состояниями.</p>
+        <a href="https://www.youtube.com/@ВАШ_КАНАЛ" target="_blank" rel="noopener">Смотреть на YouTube →</a>
+      </div>
+      <div class="review-card">
+        <div class="req">Запрос: отказ от курения</div>
+        <p>Видео-отзыв о результате после курса сессий.</p>
+        <a href="https://www.youtube.com/@ВАШ_КАНАЛ" target="_blank" rel="noopener">Смотреть на YouTube →</a>
+      </div>
+    </div>
+    <div class="shot-grid fade-up">
+      <div class="shot-slot">Скриншот благодарности клиента №1</div>
+      <div class="shot-slot">Скриншот благодарности клиента №2</div>
+      <div class="shot-slot">Скриншот благодарности клиента №3</div>
+    </div>
+  </div>
+</section>
+
+<!-- 1 — КЕЙСЫ -->
+<section id="cases">
+  <div class="wrap">
+    <div class="eyebrow fade-up">Разборы работы</div>
+    <h2 class="fade-up" style="font-size:clamp(1.75rem,4.2vw,2.35rem); max-width:20ch;">Примеры из практики</h2>
+
+    <div class="case fade-up">
+      <div class="case-row"><b>Запрос</b><p>Панические атаки в метро и в местах скопления людей, тревога длилась около двух лет.</p></div>
+      <div class="case-row"><b>Работа</b><p>4 сессии: диагностика, глубокий транс с проработкой триггера, закрепление и аудио-практика для самостоятельного использования.</p></div>
+      <div class="case-row"><b>Результат</b><p>Через 3 недели свободно пользуется метро без предварительной тревоги.</p></div>
+    </div>
+
+    <div class="case fade-up">
+      <div class="case-row"><b>Запрос</b><p>Бессонница на фоне рабочего стресса, засыпание к 3–4 часам ночи.</p></div>
+      <div class="case-row"><b>Работа</b><p>3 сессии на нормализацию режима засыпания и снятие фонового напряжения перед сном.</p></div>
+      <div class="case-row"><b>Результат</b><p>Стабильное засыпание в течение 15 минут, сон без ночных пробуждений.</p></div>
+    </div>
+
+    <p style="margin-top:18px; font-size:0.8rem; color:var(--text-dim);">[Это иллюстративные примеры — замените их на реальные обезличенные кейсы из вашей практики, указывая только запрос, без имён и фамилий.]</p>
+  </div>
+</section>
+
+<!-- ПРОБУЖДЕНИЕ / CTA -->
+<section id="wake" class="wake">
+  <div class="wrap">
+    <div class="eyebrow fade-up">Откройте глаза</div>
+    <h2 class="fade-up">Запишитесь на бесплатную консультацию — 30 минут, без обязательств</h2>
+    <p class="fade-up">Обсудим ваш запрос, я отвечу на вопросы о методе и честно скажу, подойдёт ли вам эта работа.</p>
+
+    <form id="leadForm" class="fade-up">
+      <input type="text" name="name" placeholder="Как вас зовут" required>
+      <input type="tel" name="contact" placeholder="Телефон или Telegram" required>
+      <select name="topic">
+        <option value="">Что беспокоит? (необязательно)</option>
+        <option>Тревога</option>
+        <option>Бессонница</option>
+        <option>Панические атаки</option>
+        <option>Вредная привычка</option>
+        <option>Страх / фобия</option>
+        <option>Другое</option>
+      </select>
+      <button type="submit" class="btn-primary">Записаться на консультацию</button>
+      <div class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</div>
+    </form>
+    <div class="thanks" id="thanksMsg">Спасибо! Я свяжусь с вами в течение дня, чтобы согласовать время консультации.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Гипнотерапия не заменяет консультацию врача и не является методом лечения психических или соматических заболеваний. При острых состояниях, требующих медицинской помощи, обратитесь к врачу.</p>
+    <p>© [Год] [Имя Фамилия]. [домен-сайта.ру]</p>
+  </div>
+</footer>
+
+<script>
+  // Плавное появление секций при скролле
+  const items = document.querySelectorAll('.fade-up');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold:0.15 });
+  items.forEach(el=>io.observe(el));
+
+  // Форма — заглушка отправки. Замените на реальную интеграцию
+  // (Telegram Bot API, email-сервис, CRM и т.д.)
+  const form = document.getElementById('leadForm');
+  const thanks = document.getElementById('thanksMsg');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    form.style.display = 'none';
+    thanks.style.display = 'block';
+    // TODO: отправить данные формы на ваш backend / Telegram-бота / email-сервис
+  });
+</script>
+
+</body>
+</html>
