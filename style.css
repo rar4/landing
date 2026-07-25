@@ -363,36 +363,14 @@ section>.wrap {
   aspect-ratio: 16/9;
   border: 1px solid var(--line);
   background: var(--bg-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
 }
 
-.video-frame a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  color: var(--text);
-}
-
-.play {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  border: 1px solid var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent);
-  font-size: 1.3rem;
-  transition: background .25s, color .25s;
-}
-
-.video-frame a:hover .play {
-  background: var(--accent);
-  color: var(--bg);
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
 }
 
 /* ===== ABOUT ===== */
