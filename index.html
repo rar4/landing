@@ -218,25 +218,13 @@
 <section id="wake" class="wake">
   <div class="wrap">
     <h2 class="fade-up">Запишитесь на бесплатную консультацию — 30 минут, без обязательств</h2>
-    <p class="fade-up">Обсудим ваш запрос, я отвечу на вопросы о методе и честно скажу, подойдёт ли вам эта работа.</p>
+    <p class="fade-up">Обсудим ваш запрос, я отвечу на вопросы о методе и честно скажу, подойдёт ли вам эта работа. Выберите удобное время в календаре ниже.</p>
 
-    <form id="leadForm" class="fade-up">
-      <input type="text" name="name" placeholder="Как вас зовут" required>
-      <input type="text" name="telegram" placeholder="Telegram" required>
-      <input type="text" name="info" placeholder="О себе" required>
-
-      <div class="radio-group fade-up">
-        <span class="radio-label">Я фрилансер и я хочу больше зарабатывать</span>
-        <div class="radio-options">
-          <label class="radio-option"><input type="radio" name="freelancer" value="true" required> Да</label>
-          <label class="radio-option"><input type="radio" name="freelancer" value="false"> Нет</label>
-        </div>
-      </div>
-
-      <button type="submit" class="btn-primary">Записаться на консультацию</button>
-      <div class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</div>
-    </form>
-    <div class="thanks" id="thanksMsg">Спасибо! Я свяжусь с вами в течение дня, чтобы согласовать время консультации.</div>
+<!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/oleksandrmishchenko/30min?hide_gdpr_banner=1&background_color=17141f&text_color=ece6d8&primary_color=6ea87e" style="min-width:320px;height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
   </div>
 </section>
 
@@ -256,24 +244,6 @@
     });
   }, { threshold:0.15 });
   items.forEach(el=>io.observe(el));
-
-  const form = document.getElementById('leadForm');
-  const thanks = document.getElementById('thanksMsg');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.target).entries());
-    console.log('📤 Form submitted:', data);
-    const body = new URLSearchParams(data).toString();
-    fetch('https://hooks.airtable.com/workflows/v1/genericWebhook/app3XkiKfKCaBFRrY/wfl6mE21nNtIjeITx/wtr84B1ou9cJ7sLJV', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: body
-    }).then(function(){ console.log('📡 Webhook request sent'); })
-      .catch(function(err){ console.log('📡 Webhook error:', err); });
-    form.style.display = 'none';
-    thanks.style.display = 'block';
-  });
 </script>
 
 </body>
