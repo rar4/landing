@@ -327,8 +327,21 @@ section>.wrap {
 }
 
 /* ===== RESULTS ===== */
-.result-grid {
+.result-group {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--accent);
   margin-top: 36px;
+  margin-bottom: 4px;
+}
+
+.result-group:first-of-type {
+  margin-top: 32px;
+}
+
+.result-grid {
+  margin-top: 14px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 22px 32px;
@@ -550,7 +563,7 @@ section>.wrap {
   color: var(--text-dim);
 }
 
-/* ===== CTA / CALENDLY ===== */
+/* ===== CTA / TELEGRAM ===== */
 .wake {
   text-align: center;
   padding: 110px 0 120px;
@@ -569,20 +582,32 @@ section>.wrap {
   margin: 0 auto 40px;
 }
 
-.calendly-inline-widget {
-  min-width: 320px;
-  height: 680px;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: var(--bg-soft);
-  margin: 0 auto;
+.wake-actions {
+  display: flex;
+  justify-content: center;
 }
 
-@media (max-width: 480px) {
-  .calendly-inline-widget {
-    height: 780px;
-  }
+.btn-telegram {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 16px 34px;
+  border-radius: 14px;
+  border: 1px solid var(--accent);
+  transition: opacity .25s;
+  cursor: pointer;
+}
+
+.btn-telegram:hover {
+  opacity: 0.88;
+}
+
+.btn-telegram svg {
+  flex: 0 0 auto;
 }
 
 footer {
